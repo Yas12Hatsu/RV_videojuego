@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 public class GameControll : MonoBehaviour {
 
+    public NoteCounter noteCounter; // Referencia al script NoteCounter
     [Header("General parameters")]
     [Tooltip("Player controller script here")]
     public bool m_mobileTouchInput;
@@ -699,11 +700,19 @@ public class GameControll : MonoBehaviour {
 
         if (type == 3)
         {
-            m_TipText.gameObject.SetActive(true);
-            m_TipText.text = "I need to find all pictures before leave this place!";
-            StartCoroutine(WaitForTip());
+            // Verifica si el contador ha llegado a 9
+            if (noteCounter.GetNoteCount() < 9) // Asegúrate de que el mensaje solo se muestre si no se han recogido todas las notas
+            {
+                m_TipText.gameObject.SetActive(true);
+                m_TipText.text = "Necesito encontrar todas las partes de mi cuerpo antes de salir de este lugar!";
+                StartCoroutine(WaitForTip());
+            }
+            else
+            {
+                // Si ya se han recogido todas las notas, puedes ocultar el texto
+                m_TipText.gameObject.SetActive(false);
+            }
         }
-
         if (type == 4)
         {
             m_TipText.gameObject.SetActive(true);
@@ -754,13 +763,6 @@ public class GameControll : MonoBehaviour {
             player.cameraTransform.gameObject.SetActive(true);
             m_videcams[m_currentVidecam].m_camera.SetActive(false);
         }
-
-
-
-
-
-
-
 
 
     }

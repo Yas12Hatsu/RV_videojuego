@@ -6,11 +6,15 @@ TagManager:
   tags:
   - Interact
   - Enemy
+  - Paper
+  - Paper1
+  - Paper3
+  - Paper2
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Paper
   - Water
   - UI
   - 
